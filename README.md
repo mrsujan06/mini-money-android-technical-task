@@ -32,7 +32,7 @@ Libraries used for this application Retrofit, RxJava2 and Dagger2.
 
 ### Screen 2 - User accounts screen
 
-if the user enter valid email and password (androidtest@moneyboxapp.com : P455word12) then User will be able see User account screen that shows account information such as TotalPlanValue, accounts that the user holds such as Stocks and Shares ISA , General Investment Account , Lifetime ISA , planValue and Moneybox total for all account. These are displayed in Recyclerview.
+If the user enter valid email and password (androidtest@moneyboxapp.com : P455word12) then User will be able see User account screen that shows account information such as TotalPlanValue, accounts that the user holds such as Stocks and Shares ISA , General Investment Account , Lifetime ISA , planValue and Moneybox total for all account. These are displayed in Recyclerview.
 
 In order to see these Product data Bearer token is need , this token is provided when user enter valid email and password to login.Intent is used to passed the token from Login Activity to User Account activity. UserAccountPresenter getUserData(token: String) method use this token to retrieve the investorproducts data from the api.
 
