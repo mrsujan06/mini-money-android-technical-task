@@ -1,4 +1,6 @@
 
+
+
 ## Part A - Fix current bugs
 
 ### Bug 1 - Layout does not look as expected
@@ -18,7 +20,7 @@ for the second part of animation I called Animator listener and override method 
 
 ## Part B
 
-Code are organised in MVP Artitecture. I chose MVP Artitecture mainly for separation of concern aswel as it is easier for testing as all the business logic will be in presenter. Presenter gets the data from the model and pass it to the view.
+Application is written in kotlin and code are organised in MVP Artitecture. I chose MVP Artitecture mainly for separation of concern aswel as it is easier for testing as all the business logic will be in presenter. Presenter gets the data from the model and pass it to the view.
 
 All the entities are in model package , service package contain ApiService interface and Interactor for the api service, UI package contain Activity , presenter and view interface for all the three screens and dagger package contain app component and module. ApiInteractor is used to interact with the Api.
 
