@@ -22,6 +22,7 @@ class IndividualAccountActivity : AppCompatActivity(), IndividualAccountView {
     private lateinit var token: String
     private var Id: Int = 0
     private var moneyboxValue: Int = 0
+    private val poundSign = "£"
 
     private lateinit var presenter: IndividualAccountPresenter
 
@@ -53,7 +54,6 @@ class IndividualAccountActivity : AppCompatActivity(), IndividualAccountView {
         addAmountButton = findViewById(R.id.add_button)
     }
 
-
     /**
      * Telling dagger to inject a presenter to Individual Account
      * using setPresenter
@@ -68,37 +68,26 @@ class IndividualAccountActivity : AppCompatActivity(), IndividualAccountView {
      * **/
     private fun getIncomingIntents() {
 
-        if (intent.getStringExtra(UserAccountActivity.FRIENDLY_NAME) != null && intent.getStringExtra(
-                UserAccountActivity.PLAN_VALUE
-            ) != null
-        ) {
-
+        if (intent.getStringExtra(UserAccountActivity.FRIENDLY_NAME) != null && 
+            intent.getStringExtra(UserAccountActivity.PLAN_VALUE) != null &&
+            intent.getStringExtra(UserAccountActivity.BEARERTOKEN) != null)
+        {
             name = intent.getStringExtra(UserAccountActivity.FRIENDLY_NAME)
             planValue = intent.getStringExtra(UserAccountActivity.PLAN_VALUE)
+            token = intent.getStringExtra(UserAccountActivity.BEARERTOKEN)
             moneyboxValue = intent.getIntExtra(UserAccountActivity.MONEYBOX, 0)
             Id = intent.getIntExtra(UserAccountActivity.ID, 0)
-            token = intent.getStringExtra(UserAccountActivity.BEARERTOKEN)
         }
-
     }
 
-    /**
-     * Updates UI data
-     * **/
-    @SuppressLint("SetTextI18n")
     private fun updateUI() {
         account_name.text = name
-        plan_value.text = getString(R.string.pound_sign) + planValue
-        moneybox.text = getString(R.string.pound_sign) + moneyboxValue.toString()
+        plan_value.text = poundSign.plus(planValue)
+        moneybox.text =  poundSign.plus(moneyboxValue.toString())
     }
 
-    /**
-     * Gets the data from api and update Moneybox amount when
-     * user click on Add button
-     * **/
-    @SuppressLint("SetTextI18n")
     override fun updateMoneyboxAmount(value: Int) {
-        moneybox.text = getString(R.string.pound_sign) + value
+        moneybox.text = poundSign.plus(value)
     }
 
     override fun showToast(message: String) {
@@ -118,5 +107,4 @@ class IndividualAccountActivity : AppCompatActivity(), IndividualAccountView {
         presenter.unbind()
         presenter.dispose()
     }
-
 }
