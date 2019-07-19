@@ -64,7 +64,8 @@ class UserAccountActivity : AppCompatActivity(), UserAccountView, ProductAdapter
     }
 
     override fun updateTotalPlanValue(totalPlanValue: String) {
-        this.totalPlanValue.text = totalPlanValue
+        val poundSign = "£"
+        this.totalPlanValue.text = poundSign.plus(totalPlanValue)
     }
 
     override fun updateUserData(userData: List<ProductResponse>) {
