@@ -37,7 +37,6 @@ class ProductAdapter(onProductClickListener: OnProductClickListener) :
         holder.bindModel(product[position])
     }
 
-
     fun setProduct(data: List<ProductResponse>) {
         product.addAll(data)
         notifyDataSetChanged()
@@ -57,10 +56,10 @@ class ProductAdapter(onProductClickListener: OnProductClickListener) :
         }
 
         fun bindModel(product: ProductResponse) {
-            planValue.text = product.PlanValue.toString()
-            moneyBoxValue.text = product.Moneybox.toString()
+            val poundSign = "£"
+            planValue.text = poundSign.plus(product.PlanValue.toString())
+            moneyBoxValue.text = poundSign.plus(product.Moneybox.toString())
             header.text = product.Product.FriendlyName
-
         }
 
         override fun onClick(v: View?) {
@@ -72,6 +71,5 @@ class ProductAdapter(onProductClickListener: OnProductClickListener) :
     interface OnProductClickListener {
         fun onProductClick(position: Int, product: MutableList<ProductResponse>)
     }
-
 
 }
