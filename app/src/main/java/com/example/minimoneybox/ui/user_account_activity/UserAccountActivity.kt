@@ -1,6 +1,5 @@
 package com.example.minimoneybox.ui.user_account_activity
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -15,7 +14,6 @@ import com.example.minimoneybox.ui.login_activity.LoginActivity
 import javax.inject.Inject
 
 class UserAccountActivity : AppCompatActivity(), UserAccountView, ProductAdapter.OnProductClickListener {
-
 
     private lateinit var greeting: TextView
     private lateinit var totalPlanValue: TextView
@@ -36,9 +34,6 @@ class UserAccountActivity : AppCompatActivity(), UserAccountView, ProductAdapter
         token = intent.getStringExtra(LoginActivity.TOKEN_ID)
 
         updateGreeting()
-
-        productAdapter = ProductAdapter(this)
-
         initRecyclerView()
 
         presenter.bind(this)
@@ -58,15 +53,15 @@ class UserAccountActivity : AppCompatActivity(), UserAccountView, ProductAdapter
     }
 
     private fun initRecyclerView() {
+        productAdapter = ProductAdapter(this)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = productAdapter
     }
 
-    @SuppressLint("SetTextI18n")
     override fun updateGreeting() {
-        greeting.text = "Hello $name"
+        val greet = "Hello "
+        greeting.text = greet.plus(name)
     }
-
 
     override fun updateTotalPlanValue(totalPlanValue: String) {
         this.totalPlanValue.text = totalPlanValue
@@ -93,7 +88,6 @@ class UserAccountActivity : AppCompatActivity(), UserAccountView, ProductAdapter
         startActivity(intent)
     }
 
-
     companion object {
         const val FRIENDLY_NAME = "name"
         const val PLAN_VALUE = "plan_value"
@@ -101,6 +95,11 @@ class UserAccountActivity : AppCompatActivity(), UserAccountView, ProductAdapter
         const val ID = "id"
         const val BEARERTOKEN = "bearertoken"
     }
+    
+    override fun onRestart() {
+        super.onRestart()
+        initRecyclerView()
+        presenter.getUserData(token)}
 
     override fun onDestroy() {
         super.onDestroy()
