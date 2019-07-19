@@ -39,4 +39,4 @@ In order to see these Product data Bearer token is need , this token is provided
 
 ### Screen 3 - Individual account screen
 
-When user clicks on the one of the account ,Individual account screen will open that shows details such as name of account , planvalue and moneybox total. These data where pass using intent from UserAccountActivity. User can also to add £10 to their Moneybox total. UpdateAmount() method in IndividualAccountPresenter is called when Add £10 button is clicked. This method than sends post request to the api and Moneybox total will be updated. At first Moneybox value in user account is not updated but if you close and reopen the app the value will be updated.
+When user clicks on the one of the account ,Individual account screen will open that shows details such as name of account , planvalue and moneybox total. These data where pass using intent from UserAccountActivity. User can also to add £10 to their Moneybox total. UpdateAmount() method in IndividualAccountPresenter is called when Add £10 button is clicked. This method than sends post request to the api and Moneybox total will be updated.
